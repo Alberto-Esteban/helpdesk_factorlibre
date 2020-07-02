@@ -12,6 +12,7 @@ class HelpdeskTicket(models.Model):
     
     def _get_default_priority(self):
         return "1"
+    image = fields.Binary(string='Image')
     
     name = fields.Char(
         string='Tittle',
@@ -28,7 +29,7 @@ class HelpdeskTicket(models.Model):
     
     closed_date = fields.Datetime(string='Closed Date')
     
-    prioridad = fields.Selection(selection=[
+    priority = fields.Selection(selection=[
         ('0', _('Baja')),
         ('1', _('Media')),
         ('2', _('Alta')),
