@@ -12,7 +12,6 @@ class HelpdeskTicket(models.Model):
     
     def _get_default_priority(self):
         return "1"
-    image = fields.Binary(string='Image')
     
     name = fields.Char(
         string='Tittle',
@@ -37,8 +36,8 @@ class HelpdeskTicket(models.Model):
     string='Priority',
     default=_get_default_priority,
     )
-    numero_ticket = fields.Integer(
-        string='Numero de ticket',
+    ticket_number = fields.Integer(
+        string='Ticket number',
     )
     user_id = fields.Many2one(
         string = "asigned to",
