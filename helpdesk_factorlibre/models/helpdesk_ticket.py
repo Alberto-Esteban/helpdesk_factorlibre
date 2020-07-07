@@ -29,9 +29,9 @@ class HelpdeskTicket(models.Model):
     closed_date = fields.Datetime(string='Closed Date')
     
     priority = fields.Selection(selection=[
-        ('0', _('Baja')),
-        ('1', _('Media')),
-        ('2', _('Alta')),
+        ('0', _('Low')),
+        ('1', _('Medium')),
+        ('2', _('High')),
     ], 
     string='Priority',
     default=_get_default_priority,

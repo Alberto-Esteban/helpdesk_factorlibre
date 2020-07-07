@@ -16,8 +16,10 @@
         'views/helpdesk_ticket_views.xml',
         'views/helpdesk_ticket_tags_views.xml',
         'views/inherit_res_partner_views.xml',
+        'views/helpdesk_ticket_stage_views.xml',
         'security/helpdesk_security.xml',
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
+        'data/helpdesk_data.xml'
         ],
     'installable': True,
 }
