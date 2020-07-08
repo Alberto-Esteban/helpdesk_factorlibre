@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
 
-    <!-- Actions -->
     <record id="helpdesk_ticket_action" model="ir.actions.act_window">
         <field name="name">Tickets</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="view_type">form</field>
     </record>
 
@@ -17,10 +16,8 @@
         <field name="view_mode">tree,form,kanban</field>
         <field name="domain">[('partner_id', '=', active_id)]</field>
     </record>
-    <!-- Menus -->
     <menuitem id="helpdesk_ticket_main_menu" name="Helpdesk" sequence="16" action="helpdesk_ticket_action" />
 
-    <!-- Views -->
     <record id="ticket_view_tree" model="ir.ui.view">
         <field name="name">helpdesk.ticket.view.tree</field>
         <field name="model">helpdesk.ticket</field>

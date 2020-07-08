@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="helpdesk_ticket_team_action" model="ir.actions.act_window">
+        <field name="name">Ticket Team</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">helpdesk.ticket.team</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem 
+        id="helpdesk_ticket_team_menu" 
+        name="Ticket Teams" 
+        sequence="16"
+        action="helpdesk_factorlibre.helpdesk_ticket_team_action"
+        parent = "helpdesk_factorlibre.helpdesk_ticket_main_menu"
+    />
+    
+    <record id="ticket_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.view.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="team_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_team_tree" model="ir.ui.view">
+        <field name="name">view.helpdesk.ticket.team.tree</field>
+        <field name="model">helpdesk.ticket.team</field>
+        <field name="arch" type="xml">
+            <tree string="Team">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    
+
+</odoo>

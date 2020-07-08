@@ -59,7 +59,10 @@ class HelpdeskTicket(models.Model):
     tag_ids = fields.Many2many(
         string = "Tags",
         comodel_name = "helpdesk.ticket.tag",
-        
+    )
+    team_id = fields.Many2many(
+        string = 'Team Id',
+        comodel_name = 'helpdesk.ticket.team'
     )
     
     @api.multi

@@ -23,20 +23,4 @@
     </field>
 </record>
 
-<record id="ticket_view_search" model="ir.ui.view">
-    <field name="name">helpdesk.ticket.view.search</field>
-    <field name="model">helpdesk.ticket</field>
-    <field name="arch" type="xml">
-        <search>
-            <field name="name" />
-            <field name="description" />
-            <field name="partner_id" />
-            <filter string="Unattended" name="assigned_date" domain="[('user_id', '=', False)]" />
-            <group expand="0" string="Group By">
-                  <filter string="Partner" name="group_partner" domain="[]" context="{'group_by':'partner_id'}"/>
-                  <filter string="User" name="group_user" domain="[]" context="{'group_by':'user_id'}"/>
-            </group>
-        </search>
-    </field>
-</record>
 </odoo>

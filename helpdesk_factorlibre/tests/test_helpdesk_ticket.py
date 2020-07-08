@@ -7,8 +7,8 @@ class TestHelpdeskTicket(unittest.TestCase):
         super(TestHelpdeskTicket, cls).setUpClass()
         
         helpdesk_ticket = cls.env['helpdesk.ticket']
-        user_admin = cls.env.ref('base.user_root')
-        user_demo = cls.env.ref('base.user_demo')
+        user_admin = cls.env.ref('base.admin')
+        user_demo = cls.env.ref('base.admin')
 
         tickets = cls.env['res.users']
         cls.ticket_test = tickets.create({
@@ -17,6 +17,6 @@ class TestHelpdeskTicket(unittest.TestCase):
         })
         
     def test_helpdesk_ticket_name(self):
-        self.assertNotEquals(self.helpdesk.ticket.name, '/',
+        self.assertNotEquals(self.ticket.name, '/',
                              'Helpdesk Ticket: A ticket should have '
                              'a name.')
