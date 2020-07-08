@@ -9,8 +9,10 @@ class HelpdeskTeam(models.Model):
     name = fields.Char(
         string='Name',
     )
-    team_id = fields.Integer(
-        string='Team Id',
+    
+    members = fields.Many2one(
+        string='Members'
     )
     
+    active = fields.Boolean(default=True)
     

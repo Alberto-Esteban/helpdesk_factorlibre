@@ -61,16 +61,7 @@ class HelpdeskTicket(models.Model):
         comodel_name = "helpdesk.ticket.tag",
     )
     
-    team_ids = fields.Many2many(
-        string = "Teams",
-        comodel_name = "helpdesk.ticket.team",
-    )
     
-    
-    #team_id = fields.Many2many(
-    #    string = 'Team Id',
-    #    comodel_name = 'helpdesk.ticket.team'
-    #)
     
     @api.multi
     def assign_to_me(self):

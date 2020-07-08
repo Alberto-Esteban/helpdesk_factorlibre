@@ -16,15 +16,27 @@
         parent = "helpdesk_factorlibre.helpdesk_ticket_main_menu"
     />
     
-    <record id="ticket_view_form" model="ir.ui.view">
-        <field name="name">helpdesk.ticket.view.form</field>
+    <record id="ticket_team_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.team.view.form</field>
         <field name="model">helpdesk.ticket.team</field>
         <field name="arch" type="xml">
-            <form>
-                <group>
-                    <field name="name"/>
-                    <field name="team_id"/>
-                </group>
+            <form string="Stages">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;active&quot;}"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" required="1"/></h1>
+                    </div>
+                    <group name="main">
+                        <field name="members" widget="many2many_tags"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
