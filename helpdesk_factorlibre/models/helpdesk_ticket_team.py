@@ -10,6 +10,10 @@ class HelpdeskTeam(models.Model):
         string='Name',
     )
     
+    team_id = fields.Integer(
+        string='Team Id'
+    )
+    
     members = fields.Many2one(
         string='Members'
     )

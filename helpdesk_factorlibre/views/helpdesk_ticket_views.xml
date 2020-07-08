@@ -7,17 +7,7 @@
         <field name="res_model">helpdesk.ticket</field>
         <field name="view_mode">tree,form,kanban</field>
         <field name="domain">[('partner_id', '=', active_id)]</field>
-    </record>
-
-    <record id="action_helpdesk_ticket_kanban_from_dashboard" model="ir.actions.act_window">
-        <field name="name">Helpdesk Ticket</field>
-        <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="context">
-            {'default_team_id': active_id}
-        </field>
-        <field name="domain">[('team_id', '=', active_id)]</field>
-    </record>
+    </record>   
     
     <record id="ticket_view_tree" model="ir.ui.view">
         <field name="name">helpdesk.ticket.view.tree</field>
