@@ -7,12 +7,10 @@ class HelpdeskTeam(models.Model):
     _description = 'Helpdesk Ticket Team'
 
     name = fields.Char(
-        string='Tittle',
-        required=True,
+        string='Name',
     )
-    
     team_id = fields.Integer(
-        string = 'Team Id'
+        string='Team Id',
     )
     
     

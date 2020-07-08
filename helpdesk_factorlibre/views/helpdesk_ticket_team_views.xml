@@ -18,7 +18,7 @@
     
     <record id="ticket_view_form" model="ir.ui.view">
         <field name="name">helpdesk.ticket.view.form</field>
-        <field name="model">helpdesk.ticket</field>
+        <field name="model">helpdesk.ticket.team</field>
         <field name="arch" type="xml">
             <form>
                 <group>
