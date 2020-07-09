@@ -34,9 +34,9 @@
                         <h1><field name="name" required="1"/></h1>
                     </div>
                     <group name="main">
-                        <field name="members" widget="many2one_tags"/>
+                        <field string="Team Id" name="teamId"/>
+                        <field name="user_ids" widget="many2many"/>
                     </group>
-                    <field name="team_id"/>
                 </sheet>
             </form>
         </field>
@@ -48,10 +48,9 @@
         <field name="arch" type="xml">
             <tree string="Team">
                 <field name="name"/>
-                <field name="team_id"/>
+                <field name="teamId"/>
             </tree>
         </field>
     </record>
     
-
 </odoo>

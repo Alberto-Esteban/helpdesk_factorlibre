@@ -1,6 +1,6 @@
-import unittest
+from odoo.tests import common
 
-class TestHelpdeskTicket(unittest.TestCase):
+class TestHelpdeskTicket(common.SavepointCase):
     
     @classmethod
     def setUpClass(cls):
