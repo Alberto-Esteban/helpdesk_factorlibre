@@ -44,6 +44,10 @@ class HelpdeskTicket(models.Model):
         comodel_name = "res.users",
         ondelete = "restrict"
     )
+    user_ids = fields.Many2many(
+        comodel_name='res.users',
+        related='team_id.user_ids',
+        string='Users')
     partner_id = fields.Many2one(
         string = "Customer",
         comodel_name = "res.partner",
@@ -68,6 +72,7 @@ class HelpdeskTicket(models.Model):
     unattended = fields.Boolean(related='stage_id.unattended')
     
     color = fields.Integer(string='Color Index')
+    
     
     @api.multi
     def assign_to_me(self):

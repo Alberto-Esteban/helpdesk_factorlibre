@@ -28,12 +28,12 @@
                  </div>
                  <div class="container o_kanban_card_content">
                      <div class="row">
-                         <div class="col-xs-6 o_kanban_primary_left" style="padding-top:20px;">
+                         <div class="col-6 o_kanban_primary_left" style="padding-top:20px;">
                              <button class="btn btn-primary"  name="%(action_helpdesk_ticket_kanban_from_dashboard)d" type="action" context="{'search_default_open': 1}">
                                  <t t-esc="record.todo_ticket_count.value"/> To Do
                              </button>
                          </div>
-                         <div class="col-xs-6 o_kanban_primary_right">
+                         <div class="col-6 o_kanban_primary_right">
                              <div class="row">
                                  <div class="col-9">
                                      <a name="%(action_helpdesk_ticket_kanban_from_dashboard)d" type="action" context="{'search_default_unattended': 1, 'search_default_open': 1}">

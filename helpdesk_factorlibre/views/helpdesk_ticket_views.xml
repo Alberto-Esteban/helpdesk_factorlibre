@@ -89,7 +89,6 @@
                 <field name="stage_id"/>
                 <field name="name"/>
                 <field name="user_id"/>
-                <field name="tag_ids"/>
                 <field name="priority" widget="priority"/>
                 <field name="assigned_date"/>
                 <field name="closed_date"/>
