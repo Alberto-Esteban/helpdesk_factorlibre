@@ -19,7 +19,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="ticket_number"/>
-                <field name="name"/>
+                <field name="name" string="Name"/>
+                <field name="team_id" string="Team"/>
                 <field name="description"/>
                 <field name="assigned_date"/>
                 <field name="closed_date"/>
@@ -52,7 +53,7 @@
                         <field name="partner_mail"/>
                     </group>
                     <group>
-                        <field name="team_id" options='{"always_reload": True}'/>
+                        <field name="team_id" string="Team"/>
                         <field name="user_id"/>
                         <field name="assigned_date"/>
                         <field name="closed_date"/>

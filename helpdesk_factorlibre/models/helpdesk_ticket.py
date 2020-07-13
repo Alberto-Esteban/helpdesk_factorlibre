@@ -76,9 +76,7 @@ class HelpdeskTicket(models.Model):
     
     @api.multi
     def assign_to_me(self):
-        self.write({
-            'user_id': self.env.user.id
-        })
+        self.write({'user_id': self.env.user.id})
         
     @api.multi
     @api.onchange('team_id', 'user_id')
