@@ -130,13 +130,10 @@
                                         <field name="name"/>
                                     </strong>
                                     <small class="o_kanban_record_subtitle">
-                                        <field name="partner_id"/>
+                                        <field name="user_id"/>
                                     </small>
                                 </div>
 
-                            </div>
-                            <div class="o_kanban_record_body">
-                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <div class="oe_kanban_bottom_left">
