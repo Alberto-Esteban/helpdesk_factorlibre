@@ -78,20 +78,7 @@ class HelpdeskTicket(models.Model):
     def assign_to_me(self):
         self.write({'user_id': self.env.user.id})
         
-    @api.multi
-    @api.onchange('team_id', 'user_id')
-    def _onchange_dominion_user_id(self):
-        if self.user_id:
-            if self.user_id and self.user_ids and \
-                    self.user_id not in self.user_ids:
-                self.update({
-                    'user_id': False
-                })
-                return {'domain': {'user_id': []}}
-        if self.team_id:
-            return {'domain': {'user_id': [('id', 'in', self.user_ids.ids)]}}
-        else:
-            return {'domain': {'user_id': []}}
+    
         
     @api.onchange('partner_id')
     def onchange_partner_id(self):
