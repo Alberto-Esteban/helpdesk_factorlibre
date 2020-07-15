@@ -32,9 +32,9 @@ class HelpdeskTicket(models.Model):
         ('0', _('Low')),
         ('1', _('Medium')),
         ('2', _('High')),
-    ], 
-    string='Priority',
-    default=_get_default_priority,
+        ], 
+        string='Priority',
+        default=_get_default_priority,
     )
     ticket_number = fields.Integer(
         string='Ticket number',
@@ -47,7 +47,9 @@ class HelpdeskTicket(models.Model):
     user_ids = fields.Many2many(
         comodel_name='res.users',
         related='team_id.user_ids',
-        string='Users')
+        string='Users',
+        
+    )
     partner_id = fields.Many2one(
         string = "Customer",
         comodel_name = "res.partner",
@@ -67,6 +69,7 @@ class HelpdeskTicket(models.Model):
     
     team_id = fields.Many2one(
         "helpdesk.ticket.team",
+        ondelete = "restrict"
     )
     
     unattended = fields.Boolean(related='stage_id.unattended')
@@ -89,6 +92,7 @@ class HelpdeskTicket(models.Model):
                     'partner_name': partner.name,
                     'partner_mail': partner.email,
                 })
+                
     @api.depends('user_id')
     def _compute_assigned_date(self):
         self.assigned_date = fields.Datetime.now()
@@ -103,3 +107,15 @@ class HelpdeskTicket(models.Model):
             
         res = super().create(vals)
         return res
+    
+    @api.multi
+    @api.onchange('user_id')
+    def on_change_user_id(self):
+        for record in self:
+            team = self.env['helpdesk.ticket.team'].search(
+                [('user_ids', '=', record.user_id.id)], limit=1)
+            if team:
+                record.update({
+                    'team_id': team.id
+                })
+    
