@@ -50,7 +50,9 @@
                         <field name="partner_mail"/>
                     </group>
                     <group>
-                        <field name="team_id" string="Team" options='{"always_reload": True}'/>
+                        <xpath expr="//field[@name='user_id']" position="after" string="Team">
+                            <field name="team_id"/>
+                        </xpath>
                         <field name="user_ids" invisible="1" readonly="1" />
                         <field name="user_id"/>
                         <field name="assigned_date"/>

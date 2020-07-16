@@ -13,6 +13,12 @@ class HelpdeskTicket(models.Model):
     def _get_default_priority(self):
         return "1"
     
+    def _get_default_team_id(self):
+        return self.env['helpdesk.ticket.team'].search([], limit=1).id
+
+    def _get_default_partner_id(self):
+        return self.env.user.partner_id
+    
     name = fields.Char(
         string='Tittle',
         required=True,
@@ -53,7 +59,8 @@ class HelpdeskTicket(models.Model):
     partner_id = fields.Many2one(
         string = "Customer",
         comodel_name = "res.partner",
-        ondelete="restrict"
+        ondelete="restrict",
+        default=_get_default_partner_id
     )
     partner_name = fields.Char(
         string = "Customer Name",
@@ -68,14 +75,31 @@ class HelpdeskTicket(models.Model):
     )
     
     team_id = fields.Many2one(
-        "helpdesk.ticket.team",
-        ondelete = "restrict"
+        'helpdesk.ticket.team',
+        default=_get_default_team_id,
+        ondelete='restrict'
     )
     
     unattended = fields.Boolean(related='stage_id.unattended')
     
     color = fields.Integer(string='Color Index')
     
+    team_ids = fields.Many2many(
+        string='Team',
+        comodel_name='helpdesk.ticket.team',
+    )
+    
+    count_open_tickets = fields.Integer(
+        string='Number of tickets',
+        compute='_compute_count_tickets'
+    )
+    
+    def _compute_count_tickets(self):
+        for record in self:
+            tickets = self.env['helpdesk.ticket'].search(
+                [('user_id', '=', record.id)])
+            record.count_open_tickets = len(
+                tickets.filtered(lambda ticket: ticket.stage_id.closed == False))
     
     @api.multi
     def assign_to_me(self):
@@ -108,6 +132,34 @@ class HelpdeskTicket(models.Model):
         res = super().create(vals)
         return res
     
+    @api.multi
+    @api.onchange('team_id', 'user_id')
+    def _onchange_dominion_user_id(self):
+        if self.user_id:
+            if self.user_id and self.user_ids and \
+                    self.user_id not in self.user_ids:
+                self.update({
+                    'user_id': False
+                })
+                return {'domain': {'user_id': []}}
+        if self.team_id:
+            return {'domain': {'user_id': [('id', 'in', self.user_ids.ids)]}}
+        else:
+            return {'domain': {'user_id': []}}
+    
+    @api.multi 
+    @api.onchange('team_id')
+    def onchange_team_id(self):
+        for record in self:
+            least_open_tickets_users = self.env['res.users'].search(
+                [('team_id', '=', record.team_id.id)], limit=1
+            )
+            
+            if record.team_id.id not in [team.id for team in record.team_ids]:
+                record.update({
+                    'user_id': least_open_tickets_users.id
+                })
+                            
     @api.multi
     @api.onchange('user_id')
     def on_change_user_id(self):
